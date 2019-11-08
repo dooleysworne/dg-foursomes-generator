@@ -131,6 +131,13 @@ echo "</div>";
 echo "</div>";
 }
 ?>
+<footer id="footer">
+<details>
+<summary>Copyright &copy; <?php echo date('Y'); ?></summary>
+<p>Mark Drone. All Rights Reserved.</p>
+</details>
+</footer>
+
 </body>
 <script>
 function myFunction() {
