@@ -4,9 +4,7 @@
 <title>Disc Golf Player Doubles Randomizer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
+<script src="http://code.jquery.com/jquery.js"></script>
 <style>
 .input_fields_wrap{
 max-width: 350px;
@@ -21,10 +19,23 @@ H4 {
    font-weight: bold;
    font-family: arial,tahoma,verdana,sans-serif;
  }
+#count-checked-checkboxes,.form-required, #output {
+    color:red;
+}
 
+span.counter {
+  font-size: 18px;
+  font-weight: 700;
+}
+span.number {
+   color: red;
+   font-weight: 700;  
+}
 </style>
-</div>
+</head>
+<body>
 <div class="w3-responsive w3-margin">
+<button class='w3-button w3-red' onclick="myFunction()">Reset</button>
 [ Go To <a href="foursomes.php" target="_blank">Foursomes/Threesomes Random Generator</a> ]
 <H4>DOUBLES TEAMS RANDOMIZER</H4>
 <hr>
@@ -36,6 +47,10 @@ echo "<b>Use This Web App To Randomize Doubles Teams</b>";
 echo "<fieldset>";
 ?>
 <form action="doubles.php" method="REQUEST" id="panelone">
+<div class="count-checkboxes-wrapper">
+<b>Players Playing Today</b>: <span class="counter" id="count-checked-checkboxes">0</span><br/>
+New Players Just For Today: <span class="counter" id="output">0</span>
+</div>
 <table border="0" class="w3-table-all">
 <tr class="w3-red">
 <th>SELECT</th>
@@ -49,7 +64,7 @@ $enclosure = '"';
 $row = file('players.txt', FILE_IGNORE_NEW_LINES);
     $num = count($row);
 
-//echo "There are ".$num." players in the listing<br/>";
+//echo "There are <span class='number'>".$num." </span>players in the listing<br/>";
 
 foreach ($row as $key => $value) {
     $csv[$key] = str_getcsv($value,$enclosure);
@@ -66,15 +81,14 @@ foreach ($row as $key => $value) {
  $i++;
  }
 ?>
-
-
-<button type="button" class="add_field_button">Add Player Field</button>
-<button type="button" class="remove_field_button">Remove Player Field</button>
+<button type="button" id="increment" class="add_field_button">Add Player Field</button>
+<button type="button" id="decrement" class="remove_field_button">Remove Player Field</button>
 <br/>
-<label><input type="checkbox" name="checkbox" class="selectall"/> Select All Players</label>
+<!--<label><input type="checkbox" name="checkAll" id="checkAll" class="checkAll"/> Select All Players</label>
+ <label><input type="checkbox" name="checkbox" class="selectall"/> Select All Players</label> -->
 <div class="input_fields_wrap">
 </div>
-
+<a href="#" class="" id="selectAll" value="selectAll">Select/Deselect All Players</a>
 <?php
 echo "</table>";
 echo "<br><input type=\"submit\" value=\"Pair These Players\" \>";
@@ -131,13 +145,13 @@ echo "</div>";
 echo "</div>";
 }
 ?>
+<div class='w3-margin-left'><a href="manage.php" target="_blank">*</a></div>
 <footer id="footer">
 <details>
 <summary>Copyright &copy; <?php echo date('Y'); ?></summary>
 <p>Mark Drone. All Rights Reserved.</p>
 </details>
 </footer>
-
 </body>
 <script>
 function myFunction() {
@@ -171,5 +185,64 @@ $('.selectall').click(function() {
         $('input:checkbox').attr('checked', false);
     }
 });
+</script>
+
+<script type="text/javascript">
+
+/* SELECT ALL CHECKBOXES 
+
+jQuery(document).ready(function(){
+    var checkAll = document.getElementById('checkAll');
+    checkAll.onchange = function(){
+        var set = false;
+        if (this.checked) {
+            set = true;
+        }
+        var checkboxes = document.getElementsByName('checkbox[]');
+        for (var i = 0, n = checkboxes.length; i < n; i++){ checkboxes[i].checked = set; } }; });
+ END SELECT ALL CHECKBOXES */
+</script>
+
+<script>
+$(document).ready(function() {
+  $('#selectAll').click(function(e){
+    e.preventDefault();
+    $("input:checkbox").prop('checked', function(i, current) { return !current; });
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    var $checkboxes = $('input[type="checkbox"]');
+    $checkboxes.change(function(){
+        var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
+//      if (this.id === "checkAll" && this.checked) {
+//        $('#count-checked-checkboxes').text(countCheckedCheckboxes-1);
+//        } else {        
+        $('#count-checked-checkboxes').text(countCheckedCheckboxes);
+//        }
+    });
+});
+
+$('#increment').click(function() {
+    $('#output').html(function(i, val) { return val*1+1 });
+});
+$('#decrement').click(function() {
+    $('#output').html(function(i, val) {
+        if (val <= 0) { return; }
+        return val*1-1
+     });
+});
+
+$('#count-checked-checkboxes, #output').change(function(){
+   var val1 = $('#count-checked-checkboxes').val();
+   var val2 = $('#output').val();
+   //$("#total").val(val1+' '+val2);
+   $('#total').val(val1 + val2);
+   $("#total").change();
+console.log(val1);
+console.log(val2);
+});    
 </script>
 </html>
