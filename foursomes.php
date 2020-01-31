@@ -19,7 +19,7 @@ H4 {
    font-weight: bold;
    font-family: arial,tahoma,verdana,sans-serif;
  }
-#count-checked-checkboxes,.form-required, #output  {
+#count-checked-checkboxes,.form-required, #output, #total  {
     color:red;
 }
 span.counter {
@@ -30,6 +30,7 @@ span.number {
    color: red;
    font-weight: 700;  
 }
+
 </style>
 </head>
 <body>
@@ -50,7 +51,7 @@ echo "<fieldset>";
 <div class="count-checkboxes-wrapper">
 <b>Players Playing Today</b>: <span class="counter" id="count-checked-checkboxes">0</span><br/>
 New Players Just For Today: <span class="counter" id="output">0</span><br/>
-Total: <span class="counter" id="total">0</span>
+<font size="+2">⇨</font> <b>Total:</b> <span class="counter" id="total">0</span> <font size="+2">⇦</font>
 </div>
 <table border="0" class="w3-table-all">
 <tr class="w3-red">
@@ -170,8 +171,6 @@ echo "</div>";
 </details>
 </footer>
 </body>
-
-
 <script>
 function myFunction() {
     location.reload();
@@ -179,91 +178,50 @@ function myFunction() {
 </script>
 
 <script>
-var max_fields      = 16;
-var wrapper         = $(".input_fields_wrap");
-var add_button      = $(".add_field_button");
-var remove_button   = $(".remove_field_button");
+/* Special thanks to Jake Wolpert @ https://forum.jquery.com/ for his help with this code */
+var max_fields = 16;
+var wrapper = $(".input_fields_wrap");
+var add_button = $(".add_field_button");
+var remove_button = $(".remove_field_button");
 
-$(add_button).click(function(e){
-	e.preventDefault();
-	var total_fields = wrapper[0].childNodes.length;
-	if(total_fields < max_fields){
-		$(wrapper).append('<tr><td align="center" bgcolor="#FFFFFF">NEW PLAYER:</td><td align="center"><input type="text" name="user2[]" id="user" class="field-long"></td></tr>');
-	}
-});
-$(remove_button).click(function(e){
-	e.preventDefault();
-	var total_fields = wrapper[0].childNodes.length;
-	if(total_fields>1){
-		wrapper[0].childNodes[total_fields-1].remove();
-	}
-});
-
-$('.selectall').click(function() {
-    if ($(this).is(':checked')) {
-        $('input:checkbox').attr('checked', true);
-    } else {
-        $('input:checkbox').attr('checked', false);
-    }
-});
-</script>
-
-<script type="text/javascript">
-
-/* SELECT ALL CHECKBOXES 
-
-jQuery(document).ready(function(){
-    var checkAll = document.getElementById('checkAll');
-    checkAll.onchange = function(){
-        var set = false;
-        if (this.checked) {
-            set = true;
-        }
-        var checkboxes = document.getElementsByName('checkbox[]');
-        for (var i = 0, n = checkboxes.length; i < n; i++){ checkboxes[i].checked = set; } }; });
- END SELECT ALL CHECKBOXES */
-</script>
-
-<script>
-$(document).ready(function() {
-  $('#selectAll').click(function(e){
+add_button.click(function(e) {
     e.preventDefault();
-    $("input:checkbox").prop('checked', function(i, current) { return !current; });
-  });
+    var total_fields = wrapper[0].childNodes.length;
+    if(total_fields < max_fields) {
+        $(wrapper).append('<tr class="new-player" ><td align="center" bgcolor="#FFFFFF">NEW PLAYER:</td><td align="center"><input type="text" name="user2[]" id="user" class="field-long"></td></tr>');
+    }
+    totalItUp()
 });
-</script>
+remove_button.click(function(e) {
+    e.preventDefault();
+    var total_fields = wrapper[0].childNodes.length;
+    if(total_fields > 1) {
+        wrapper[0].childNodes[total_fields - 1].remove();
+    }
+    totalItUp()
+});
 
-<script>
-$(document).ready(function(){
-    var $checkboxes = $('input[type="checkbox"]');
-    $checkboxes.change(function(){
-        var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-//      if (this.id === "checkAll" && this.checked) {
-//        $('#count-checked-checkboxes').text(countCheckedCheckboxes-1);
-//        } else {        
-        $('#count-checked-checkboxes').text(countCheckedCheckboxes);
-//        }
+/* SELECT/DESELECT CHECKBOXES */
+$('#selectAll').click(function(e) {
+    e.preventDefault();
+    $("input:checkbox").prop('checked', function(i, current) {
+        return !current;
     });
+    totalItUp()
 });
 
-$('#increment').click(function() {
-    $('#output').html(function(i, val) { return val*1+1 });
-});
-$('#decrement').click(function() {
-    $('#output').html(function(i, val) {
-        if (val <= 0) { return; }
-        return val*1-1
-     });
-});
+/* COUNT SELECTED CHECKBOXES */
+$('input[type="checkbox"]').change(totalItUp);
 
-$('#count-checked-checkboxes, #output').change(function(){
-   var val1 = $('#count-checked-checkboxes').val();
-   var val2 = $('#output').val();
-   //$("#total").val(val1+' '+val2);
-   $('#total').val(val1 + val2);
-   $("#total").change();
-console.log(val1);
-console.log(val2);
-});    
+/* How can I get the sum of the values sent to the '#count-checked-checkboxes' span element & 
+'#output' span and display the sum in the #total span? The following is not doing it for me. */
+function totalItUp() {
+    var newPlayers = $('.new-player').length,
+        checked = $(":checked").length;
+    $('#count-checked-checkboxes').text(checked);
+    $('#output').text(newPlayers);
+    $('#total').text(checked + newPlayers);
+}
+
 </script>
 </html>
