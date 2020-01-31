@@ -51,7 +51,7 @@ echo "<fieldset>";
 <div class="count-checkboxes-wrapper">
 <b>Players Playing Today</b>: <span class="counter" id="count-checked-checkboxes">0</span><br/>
 New Players Just For Today: <span class="counter" id="output">0</span><br/>
-<font size="+2">⇨</font> <b>Total:</b> <span class="counter" id="total">0</span> <font size="+2">⇦</font>
+<fieldset style="display: inline-block;"><b>Total:</b> <span class="counter" id="total">0</span></fieldset>
 </div>
 <table border="0" class="w3-table-all">
 <tr class="w3-red">
@@ -167,6 +167,7 @@ var wrapper = $(".input_fields_wrap");
 var add_button = $(".add_field_button");
 var remove_button = $(".remove_field_button");
 
+/* ADD NEW PLAYER TEXT FIELDS */
 add_button.click(function(e) {
     e.preventDefault();
     var total_fields = wrapper[0].childNodes.length;
@@ -175,6 +176,8 @@ add_button.click(function(e) {
     }
     totalItUp()
 });
+
+/* REMOVE NEW PLAYER TEXT FIELDS */
 remove_button.click(function(e) {
     e.preventDefault();
     var total_fields = wrapper[0].childNodes.length;
@@ -196,8 +199,6 @@ $('#selectAll').click(function(e) {
 /* COUNT SELECTED CHECKBOXES */
 $('input[type="checkbox"]').change(totalItUp);
 
-/* How can I get the sum of the values sent to the '#count-checked-checkboxes' span element & 
-'#output' span and display the sum in the #total span? The following is not doing it for me. */
 function totalItUp() {
     var newPlayers = $('.new-player').length,
         checked = $(":checked").length;
