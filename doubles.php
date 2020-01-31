@@ -36,14 +36,11 @@ span.number {
 </head>
 <body>
 <div class="w3-responsive w3-margin">
-<button class='w3-button w3-red' onclick="myFunction()">Reset</button>
 [ Go To <a href="foursomes.php" target="_blank">Foursomes/Threesomes Random Generator</a> ]
 <H4>DOUBLES TEAMS RANDOMIZER</H4>
 <hr>
 <?php
-
 if(!$_REQUEST["checkbox"]) {
-
 echo "<b>Use This Web App To Randomize Doubles Teams</b>";
 echo "<fieldset>";
 ?>
@@ -51,14 +48,13 @@ echo "<fieldset>";
 <div class="count-checkboxes-wrapper">
 <b>Players Playing Today</b>: <span class="counter" id="count-checked-checkboxes">0</span><br/>
 New Players Just For Today: <span class="counter" id="output">0</span><br/>
-<fieldset style="display: inline-block;"><b>Total:</b> <span class="counter" id="total">0</span></fieldset>
+<fieldset style="display: inline-block;"><b>Total:</b> <span class="counter" id="total">0</span></fieldset> <button class='w3-button w3-red' onclick="myFunction()">Reset</button>
 </div>
 <table border="0" class="w3-table-all">
 <tr class="w3-red">
 <th>SELECT</th>
 <th>PLAYER</th>
 </tr>
-
 <?php
 $i = 0;
 $csv = array();
@@ -66,7 +62,7 @@ $enclosure = '"';
 $row = file('players.txt', FILE_IGNORE_NEW_LINES);
     $num = count($row);
 
-//echo "There are <span class='number'>".$num." </span>players in the listing<br/>";
+echo "There are <span class='number'>".$num." </span> players in the listing<br/>";
 
 foreach ($row as $key => $value) {
     $csv[$key] = str_getcsv($value,$enclosure);

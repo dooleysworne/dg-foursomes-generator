@@ -35,7 +35,6 @@ span.number {
 </head>
 <body>
 <div class="w3-responsive w3-margin">
-<button class='w3-button w3-red' onclick="myFunction()">Reset</button>
 [ Go To <a href="doubles.php" target="_blank">Doubles Randomizer</a> ]
 <H4>FOURSOMES/THREESOMES RANDOM GENERATOR</H4>
 <hr>
@@ -44,14 +43,11 @@ if(!$_REQUEST["checkbox"]) {
 echo "<b>Use The Checkboxes Below To Select Players For Groups To Play Today</b>";
 echo "<fieldset>";
 ?>
-<!--
-<a title="FilterCategory" id="general" class="">Players Playing Today: <b><large class="counter"></large></b></a><br/>
--->
 <form action="foursomes.php" method="REQUEST" id="panelone">
 <div class="count-checkboxes-wrapper">
 <b>Players Playing Today</b>: <span class="counter" id="count-checked-checkboxes">0</span><br/>
 New Players Just For Today: <span class="counter" id="output">0</span><br/>
-<fieldset style="display: inline-block;"><b>Total:</b> <span class="counter" id="total">0</span></fieldset>
+<fieldset style="display: inline-block;"><b>Total:</b> <span class="counter" id="total">0</span></fieldset> <button class='w3-button w3-red' onclick="myFunction()">Reset</button>
 </div>
 <table border="0" class="w3-table-all">
 <tr class="w3-red">
