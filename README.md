@@ -20,3 +20,5 @@ Managing the players list is done by clicking the hyperlinked asterisk at the bo
 As a bonus, a doubles team randomizer is included. If there happens to be an odd number of players, the odd man out typically plays what is called "Cali", meaning that he/she plays as an individual, but is alloted an additional throw per hole without penalty. See https://www.discgolfscene.com/post/328840/cali-rules
 
 I'm sure a better programmer could churn out some much cleaner code, but hey! . . . it works and we've been using it with great success. It sure beats the heck out of flipping discs and picking cards from a deck.
+
+A big tip-of-the-cap to Jake Wolpert @ https://forum.jquery.com/ for his help with the javascript code. It's his totalItUp() function that counts all the checkboxes and new player text fields and adds them together at the tops of the screens so that we don't have to scroll down and manually count how many players are playing and reconcile that with our sign-in sheet each week. Thanks Jake!
