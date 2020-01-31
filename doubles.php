@@ -4,6 +4,7 @@
 <title>Disc Golf Player Doubles Randomizer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="bootstrap.css">
 <script src="http://code.jquery.com/jquery.js"></script>
 <style>
 .input_fields_wrap{
@@ -48,7 +49,7 @@ echo "<fieldset>";
 <div class="count-checkboxes-wrapper">
 <b>Players Playing Today</b>: <span class="counter" id="count-checked-checkboxes">0</span><br/>
 New Players Just For Today: <span class="counter" id="output">0</span><br/>
-<fieldset style="display: inline-block;"><b>Total:</b> <span class="counter" id="total">0</span></fieldset> <button class='w3-button w3-red' onclick="myFunction()">Reset</button>
+<fieldset style="display: inline-block;"><b>Total:</b> <span class="counter" id="total">0</span></fieldset> <a href="doubles.php" class="btn btn-default">Reset</a>
 </div>
 <table border="0" class="w3-table-all">
 <tr class="w3-red">
@@ -151,11 +152,7 @@ echo "</div>";
 </details>
 </footer>
 </body>
-<script>
-function myFunction() {
-    location.reload();
-}
-</script>
+
 <script>
 /* Special thanks to Jake Wolpert @ https://forum.jquery.com/ for his help with this code */
 var max_fields = 16;
