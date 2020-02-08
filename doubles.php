@@ -144,7 +144,7 @@ echo "</div>";
 echo "</div>";
 }
 ?>
-<div class='w3-margin-left'><a href="manage.php" target="_blank">*</a></div>
+<div class='w3-margin-left'><a href="manage.php" target="_blank"><font size="+1">&#167;</font>></a></div>
 <footer id="footer">
 <details>
 <summary>Copyright &copy; <?php echo date('Y'); ?></summary>
