@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="bootstrap.css">
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="jquery-3.4.1.min.js"></script>
 <style>
 .input_fields_wrap{
 max-width: 350px;
@@ -152,6 +152,11 @@ echo "</div>";
 </details>
 </footer>
 </body>
+<script>
+function myFunction() {
+    location.reload();
+}
+</script>
 
 <script>
 /* Special thanks to Jake Wolpert @ https://forum.jquery.com/ for his help with this code */
