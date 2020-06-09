@@ -74,7 +74,7 @@ echo "</div>";
 ?>
 <h5>HIGHLY RECOMMENDED:</h5>
 <div>
-<p>We highly recommend that you copy and save your club or league player list to a plain text file on your local computer. Please don't use a word processor. Use a text editor like Windows Notepad, Editpad Lite (<a href="https://www.editpadlite.com/" target="_blank">https://www.editpadlite.com/</a>) or even Online Editpad (<a href="https://www.editpad.org/" target="_blank">https://www.editpad.org/</a>).  That way, if you would happen to accidently delete the player list above, you can restore it from your saved text file.</p>
+<p>We highly recommend that you copy and save your club or league player list to a plain text file on your local computer. Please don't use a word processor. Use a text editor like Windows Notepad, Editpad Lite (<a href="https://www.editpadlite.com/" target="_blank">https://www.editpadlite.com/</a>) or even Online Editpad (<a href="https://www.editpad.org/" target="_blank">https://www.editpad.org/</a>).  That way, if you would happen to accidentally delete the player list above, you can restore it from your saved text file.</p>
 </div>
 <footer id="footer">
 <details>
